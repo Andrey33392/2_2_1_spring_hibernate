@@ -10,11 +10,13 @@ public interface UserService {
     @Transactional
     void add(User user);
 
-    void add(User user, Car car);
     List<User> listUsers();
 
     @Transactional(readOnly = true)
     User getUserByCar(String model, int series);
 
 
+
+    @Transactional
+    void cleanUsersTable(User user);
 }

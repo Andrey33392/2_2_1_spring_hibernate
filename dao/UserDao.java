@@ -9,4 +9,6 @@ public interface UserDao {
    List<User> listUsers();
 
    User getUserByCar(String model, int series);
+
+    void cleanUsersTable(User user);
 }

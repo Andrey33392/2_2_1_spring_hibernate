@@ -20,11 +20,14 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(name = "model")
     String model;
-    @Column
+    @Column(name = "series")
     int series;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public User getUser() {
         return user;
@@ -35,9 +38,7 @@ public class Car {
         return user;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+
 
     public Car() {
 

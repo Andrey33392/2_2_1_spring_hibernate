@@ -1,6 +1,18 @@
 package hiber.model;
 
-import javax.persistence.*;
+
+
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -10,13 +22,28 @@ public class User {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      User user = (User) o;
+      return id.equals(user.id) || email.equals(user.email);
+   }
+
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, email);
+   }
+
    @Column(name = "name")
    private String firstName;
 
    @Column(name = "last_name")
    private String lastName;
 
-   @Column(name = "email")
+   @Column(name = "email", unique = true)
+
    private String email;
 
    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")

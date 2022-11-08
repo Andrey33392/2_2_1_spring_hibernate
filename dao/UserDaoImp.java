@@ -17,6 +17,7 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public void add(User user) {
+
       sessionFactory.getCurrentSession().save(user);
    }
 
@@ -43,6 +44,13 @@ public class UserDaoImp implements UserDao {
     return null;
    }
 
+   @Override
+   public void cleanUsersTable(User user) {
+
+      sessionFactory.getCurrentSession().remove(user);
+
+      System.out.println("delete user");
+   }
 
 
 }
