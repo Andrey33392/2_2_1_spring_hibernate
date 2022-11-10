@@ -8,8 +8,7 @@ import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
 
 public class MainApp {
@@ -18,6 +17,7 @@ public class MainApp {
                 new AnnotationConfigApplicationContext(AppConfig.class);
 
         UserService userService = context.getBean(UserService.class);
+        CarService carService = context.getBean(CarService.class);
 
 
         User user1 = new User("User1", "Lastname1", "user1@mail.ru");
@@ -31,6 +31,11 @@ public class MainApp {
         Car car3 = new Car("Hammer", 25);
         Car car4 = new Car("Bugatti", 125);
 
+
+        carService.add(car1);
+        carService.add(car2);
+        carService.add(car3);
+        carService.add(car4);
 
         userService.add(user1.setCar(car1).setUser(user1));
         userService.add(user2);

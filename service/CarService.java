@@ -9,7 +9,7 @@ public interface CarService {
     @Transactional
     void add(Car car);
 
-    List<Car> listUsers();
+    List<Car> listCar();
 
 
 }
